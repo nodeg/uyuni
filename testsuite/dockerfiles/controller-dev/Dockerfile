@@ -41,6 +41,7 @@ CMD ssh-keygen -A && /usr/sbin/sshd -De
 
 ### Ruby 3 changes ###
 RUN export GEM_PATH="/usr/lib64/ruby/gems/3.3.0"
+RUN echo 'GEM_PATH="/usr/lib64/ruby/gems/3.3.0"' >> ./root/.bashrc
 
 RUN ln -sf /usr/bin/ruby.ruby3.3 /usr/bin/ruby
 RUN ln -sf /usr/bin/gem.ruby3.3 /usr/bin/gem
@@ -62,7 +63,8 @@ RUN git clone https://github.com/nodeg/twopence.git /root/twopence && \
     cd /root/twopence && \
     git checkout update_ruby && \
     make && \
-    make install && \
-    gem list
-
+    make install
+RUN gem list | grep twopence
+RUN ln -s /usr/lib64/ruby/gems/3.3.0/gems/twopence-0.4.2/lib/twopence.so /usr/lib64/ruby/gems/3.3.0/gems/twopence-0.4.2/lib/twopence.so.0
+RUN ldconfig
 RUN curl https://raw.githubusercontent.com/nodeg/uyuni/master/testsuite/Gemfile -o Gemfile && bundle.ruby3.3 install && rm Gemfile
