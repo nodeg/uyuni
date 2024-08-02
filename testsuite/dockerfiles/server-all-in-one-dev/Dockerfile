@@ -2,22 +2,26 @@ ARG BASE
 ARG VERSION
 FROM ${BASE}:${VERSION}
 
-RUN zypper ref && \
-      zypper -n install \
+RUN zypper -n --gpg-auto-import-keys ref
+# debug
+RUN zypper -n lr --uri
+RUN zypper -n se ant-junit5
+RUN zypper -n info ant-junit5
+RUN zypper -n install \
       java-17-openjdk-devel \
       openssh \
       rsync \
       apache-ivy \
       ant \
-      ant-junit5 \
+      ant-junit \
       servletapi5 \
       cpio \
       spacecmd \
       expect \
-      wget && \
-    zypper addrepo --no-gpgcheck obs://systemsmanagement:Uyuni:Utils systemsmanagement:uyuni:utils && \
+      wget
+RUN zypper -n addrepo --no-gpgcheck obs://systemsmanagement:Uyuni:Utils systemsmanagement:uyuni:utils && \
     zypper -n install obs-to-maven yarn && \
-    zypper clean -a
+    zypper -n clean -a
 COPY minima.yaml /etc/minima.yaml
 RUN mkdir /tmp/minima && \
     cd /tmp/minima && \
