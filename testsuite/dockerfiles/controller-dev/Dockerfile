@@ -67,5 +67,5 @@ RUN git clone https://github.com/nodeg/twopence.git /root/twopence && \
     make install
 RUN gem list | grep twopence
 RUN file /usr/lib64/ruby/gems/3.3.0/gems/twopence-0.4.2/lib/twopence.so
-RUN ldconfig
+
 RUN curl https://raw.githubusercontent.com/nodeg/uyuni/master/testsuite/Gemfile -o Gemfile && bundle.ruby3.3 install && rm Gemfile
