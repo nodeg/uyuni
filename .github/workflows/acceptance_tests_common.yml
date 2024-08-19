@@ -9,7 +9,7 @@ on:
         required: true
         type: string
 env:
-  UYUNI_PROJECT: uyuni-project
+  UYUNI_PROJECT: nodeg
   UYUNI_VERSION: master
   CUCUMBER_PUBLISH_TOKEN: ${{ secrets.CUCUMBER_PUBLISH_TOKEN }}
 jobs:
@@ -66,9 +66,9 @@ jobs:
       - name: create-podman-network
         run: ./testsuite/podman_runner/02_setup_network.sh
       - name: start_controller
-        run: ./testsuite/podman_runner/03_run_controller.sh 
+        run: ./testsuite/podman_runner/03_run_controller.sh
       - name: create_ssh_conf
-        run: ./testsuite/podman_runner/04_setup_ssh_controller.sh 
+        run: ./testsuite/podman_runner/04_setup_ssh_controller.sh
       - name: install_gems_in_controller
         run: ./testsuite/podman_runner/05_install_gems_in_controller.sh
       - name: collect_and_tag_flaky_tests_in_controller
@@ -110,7 +110,7 @@ jobs:
       - name: split_secondary
         run: ./testsuite/podman_runner/19_split_secondary_p_tests.sh
       - name: run_secondary_tests
-        run: ./testsuite/podman_runner/${{ inputs.secondary_tests }} 
+        run: ./testsuite/podman_runner/${{ inputs.secondary_tests }}
       - name: get_server_logs
         if: ${{ failure() }}
         run: ./testsuite/podman_runner/20_get_server_logs.sh ${{ inputs.server_id }}

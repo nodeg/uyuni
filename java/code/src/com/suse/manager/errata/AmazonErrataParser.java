@@ -24,6 +24,7 @@ import java.text.MessageFormat;
 
 /**
  * Parser specific for Amazon linux errata.
+ * DOM TEST
  */
 public class AmazonErrataParser implements VendorSpecificErrataParser {
 
