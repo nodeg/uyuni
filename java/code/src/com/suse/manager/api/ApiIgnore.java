@@ -28,6 +28,7 @@ public @interface ApiIgnore {
     /**
      * The specific API interface the method shall be ignored in
      * @return the ignored API types
+     * DOM test
      */
     ApiType[] value() default {ApiType.XMLRPC, ApiType.HTTP};
 }
