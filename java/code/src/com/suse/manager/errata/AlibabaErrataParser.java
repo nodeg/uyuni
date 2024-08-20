@@ -16,6 +16,7 @@ package com.suse.manager.errata;
 
 /**
  * Parser specific for Alibaba cloud linux errata.
+ * // TEST DOM
  */
 public class AlibabaErrataParser extends AbstractSimpleErrataParser {
 

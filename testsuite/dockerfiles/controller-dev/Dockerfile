@@ -53,6 +53,7 @@ RUN update-alternatives --set ri /usr/bin/ri.ruby.ruby3.3
 # debug
 RUN ruby -v
 RUN gem env
+RUN cat ./root/.bashrc
 
 # build Twopence from source
 RUN git clone https://github.com/nodeg/twopence.git /root/twopence && \
