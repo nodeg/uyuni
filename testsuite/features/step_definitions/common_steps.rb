@@ -5,6 +5,7 @@
 ### as well as those which do not fit into any other category or are temporary workarounds.
 ###
 ### The definitions are divided into blocks marked with a summary headline.
+# test
 
 require 'jwt'
 require 'securerandom'
