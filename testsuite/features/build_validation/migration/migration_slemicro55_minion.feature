@@ -6,12 +6,6 @@ Feature: Migrate a SLE Micro 5.5 Salt minion to SL Micro 6.1
 
   Scenario: Log in as admin user
     Given I am authorized for the "Admin" section
-    
-  Scenario: Prerequisite: update OS Salt to the latest version
-    When I upgrade "slemicro55_minion" with the last "salt" version
-
-  Scenario: Prerequisite: Reboot the slemicro 5.5 after updating salt
-    When I reboot the "slemicro55_minion" host through SSH, waiting until it comes back
 
   Scenario: Prerequisite: update OS zypper to the latest version
     When I upgrade "slemicro55_minion" with the last "zypper" version
