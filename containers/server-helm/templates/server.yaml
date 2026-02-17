@@ -42,8 +42,8 @@ spec:
             path: /rhn/manager/api/api/getVersion
             port: 80
             scheme: HTTP
-          initialDelaySeconds: 60
-          periodSeconds: 60
+          initialDelaySeconds: 180
+          periodSeconds: 30
           successThreshold: 1
           timeoutSeconds: 20
         name: uyuni
@@ -67,14 +67,14 @@ spec:
         - containerPort: 9800
 {{- end }}
         readinessProbe:
-          failureThreshold: 5
+          failureThreshold: 10
           httpGet:
             path: /rhn/manager/api/api/getVersion
             port: 80
             scheme: HTTP
           periodSeconds: 30
           successThreshold: 1
-          timeoutSeconds: 20
+          initialDelaySeconds: 120
         volumeMounts:
         - mountPath: /var/lib/cobbler
           name: var-cobbler
