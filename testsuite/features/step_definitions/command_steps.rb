@@ -1596,6 +1596,24 @@ When(/^I reboot the server through SSH$/) do
   end
 end
 
+When(/^I restart the SUSE Manager container using mgradm and wait for readiness$/) do
+  server = get_target('server')
+  server.run('mgradm restart', runs_in_container: false)
+  default_timeout = 420 # 7 minutes
+  log "Waiting for services to initialize (Timeout: #{default_timeout}s)..."
+  repeat_until_timeout(timeout: default_timeout, message: 'SUSE Manager failed to reach a ready state') do
+    out, _code = server.run('mgradm status', runs_in_container: false, check_errors: false)
+    target_active = out.include?('spacewalk.target') && out.include?('active since')
+    tomcat_running = out.match?(/tomcat\.service.*?active \(running\)/m)
+    if target_active && tomcat_running
+      log 'SUSE Manager 5.1 is fully up: spacewalk.target is active and Tomcat is running.'
+      break
+    end
+    log 'Waiting for Tomcat initialization...' if target_active && !tomcat_running
+    sleep 10
+  end
+end
+
 When(/^I reboot the "([^"]*)" host through SSH, waiting until it comes back$/) do |host|
   node = get_target(host)
   node.run('reboot', check_errors: false, verbose: true, runs_in_container: false)
