@@ -1,4 +1,4 @@
-# Copyright (c) 2014-2025 SUSE LLC.
+# Copyright (c) 2014-2026 SUSE LLC.
 # Licensed under the terms of the MIT license.
 
 ### This file contains the definitions for all steps concerning the execution of commands on a system.
@@ -995,6 +995,9 @@ end
 
 When(/^I remove packages? "([^"]*)" from this "([^"]*)"((?: without error control)?)$/) do |package, host, error_control|
   node = get_target(host)
+  # Split the input string into an array to handle multiple packages
+  package_list = package.split
+
   if rh_host?(host)
     cmd = "yum -y remove #{package}"
     successcodes = [0]
@@ -1002,10 +1005,22 @@ When(/^I remove packages? "([^"]*)" from this "([^"]*)"((?: without error contro
     cmd = "dpkg --remove #{package}"
     successcodes = [0]
   elsif transactional_system?(host)
-    cmd = "transactional-update pkg rm -y #{package}"
+    # Pre-filter: transactional-update fails and rolls back the whole snapshot if a package isn't found (exit code 104).
+    # By only passing installed packages, we ensure a 0 exit code and prevent automatic rollback of the transaction.
+    check_cmd = "rpm -q --qf '%{NAME}\\n' #{package_list.join(' ')} 2>/dev/null"
+    raw_output, = node.run(check_cmd, check_errors: false)
+    # To avoid using | grep -v 'not installed' in command, use select to verify lane match the packages to remove
+    packages_to_remove = raw_output.split("\n").select { |line| package_list.include?(line.strip) }
+    if packages_to_remove.empty?
+      puts "None of the packages (#{package}) are installed on #{host}. Skipping."
+      next
+    end
+    # Use --continue to ensure we build upon the existing pending snapshot if one exists
+    cmd = "transactional-update --continue pkg rm -y #{packages_to_remove.join(' ')}"
     successcodes = [0, 100, 101, 102, 103, 106]
   else
     cmd = "zypper --non-interactive remove -y #{package}"
+    # Zypper is fine with 104 (package not found), but transactional-update is not
     successcodes = [0, 100, 101, 102, 103, 104, 106]
   end
   node.run(cmd, check_errors: error_control.empty?, successcodes: successcodes)
