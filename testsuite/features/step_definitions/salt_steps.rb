@@ -565,7 +565,7 @@ When(/^I perform a full salt minion cleanup on "([^"]*)"$/) do |host|
   salt_classic_config_dir = '/etc/salt'
 
   # Define cleanup paths
-  salt_bundle_cleanup_paths = '/var/cache/venv-salt-minion /run/venv-salt-minion /var/venv-salt-minion.log /var/tmp/.root*'
+  salt_bundle_cleanup_paths = '/var/cache/venv-salt-minion /run/venv-salt-minion /var/log/venv-salt-minion.log /var/tmp/.root*'
   salt_classic_cleanup_paths = '/var/cache/salt/minion /var/run/salt /run/salt /var/log/salt /var/tmp/.root*'
 
   # File cleanup within the configuration directory
