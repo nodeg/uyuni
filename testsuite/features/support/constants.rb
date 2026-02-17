@@ -662,6 +662,8 @@ CHANNEL_TO_SYNC_BY_OS_PRODUCT_VERSION = {
         sle-module-basesystem15-sp7-updates-x86_64
         managertools-sle15-pool-x86_64-sp7
         managertools-sle15-updates-x86_64-sp7
+        managertools-beta-sle15-pool-x86_64-sp7
+        managertools-beta-sle15-updates-x86_64-sp7
         sle-module-python3-15-sp7-pool-x86_64
         sle-module-python3-15-sp7-updates-x86_64
         sle-module-server-applications15-sp7-pool-x86_64
@@ -842,6 +844,8 @@ CHANNEL_TO_SYNC_BY_OS_PRODUCT_VERSION = {
         sle-module-basesystem15-sp7-updates-x86_64
         managertools-sle15-pool-x86_64-sp7
         managertools-sle15-updates-x86_64-sp7
+        managertools-beta-sle15-pool-x86_64-sp7
+        managertools-beta-sle15-updates-x86_64-sp7
         sle-module-python3-15-sp7-pool-x86_64
         sle-module-python3-15-sp7-updates-x86_64
         sle-module-server-applications15-sp7-pool-x86_64
@@ -1482,6 +1486,8 @@ TIMEOUT_BY_CHANNEL_NAME = {
   'managertools-sle15-updates-x86_64-sp5' => 60,
   'managertools-sle15-updates-x86_64-sp6' => 60,
   'managertools-sle15-updates-x86_64-sp7' => 60,
+  'managertools-beta-sle15-pool-x86_64-sp7' => 60,
+  'managertools-beta-sle15-updates-x86_64-sp7' => 60,
   'managertools-ubuntu2204-updates-amd64' => 60,
   'managertools-ubuntu2404-updates-amd64' => 60,
   'opensuse-backports-15.6-updates-aarch64' => 300,
@@ -1713,7 +1719,6 @@ EMPTY_CHANNELS = %w[
   suse-multi-linux-manager-proxy-sle-5.2-updates-x86_64-sp7
   suse-multi-linux-manager-retail-branch-server-sle-5.1-updates-x86_64-sp7
   suse-multi-linux-manager-retail-branch-server-sle-5.2-updates-x86_64-sp7
-  managertools-sle15-updates-x86_64-sp7
   sle-product-sles15-sp6-ltss-updates-x86_64
   suse-manager-proxy-5.0-updates-x86_64
   suse-manager-retail-branch-server-5.0-updates-x86_64
