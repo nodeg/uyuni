@@ -854,6 +854,8 @@ CHANNEL_TO_SYNC_BY_OS_PRODUCT_VERSION = {
         sle-module-desktop-applications15-sp7-updates-x86_64
         sle-module-devtools15-sp7-updates-x86_64
         sle-module-devtools15-sp7-pool-x86_64
+        sle-module-containers15-sp7-pool-x86_64
+        sle-module-containers15-sp7-updates-x86_64
         sle-module-systems-management-15-sp7-pool-x86_64
         sle-module-systems-management-15-sp7-updates-x86_64
       ],
