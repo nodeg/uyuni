@@ -750,6 +750,7 @@ Feature: Synchronize products in the products page of the Setup Wizard
 
 @susemanager
 @run_if_proxy_not_transactional_or_sles15sp7_minion
+  Scenario: Add SUSE Linux Enterprise Server 15 SP7
     Given I am authorized for the "Admin" section
     When I follow the left menu "Admin > Setup Wizard > Products"
     And I wait until I do not see "currently running" text
