@@ -28,7 +28,7 @@ spec:
 {{- end }}
       containers:
         - name: tftpd
-          image: {{ include "uyuni.image" (dict "name" "shared-tftpd" "global" . "local" .Values.tftp) }}
+          image: {{ include "uyuni.image" (dict "name" "proxy-tftpd" "global" . "local" .Values.tftp) }}
           imagePullPolicy: "{{ .Values.pullPolicy }}"
           command:
             - /usr/bin/tftp_wrapper.py

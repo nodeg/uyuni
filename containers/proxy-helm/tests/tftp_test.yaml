@@ -26,7 +26,7 @@ tests:
           any: true
           content:
             name: tftpd
-            image: registry.opensuse.org/uyuni/shared-tftpd:latest
+            image: registry.opensuse.org/uyuni/proxy-tftpd:latest
             imagePullPolicy: Always
             command:
             - /usr/bin/tftp_wrapper.py
@@ -51,7 +51,7 @@ tests:
           path: spec.template.spec.containers
           content:
             name: tftpd
-            image: my.custom.registry/uyuni/shared-tftpd:5.2.3
+            image: my.custom.registry/uyuni/proxy-tftpd:5.2.3
             imagePullPolicy: IfNotPresent
           any: true
 
