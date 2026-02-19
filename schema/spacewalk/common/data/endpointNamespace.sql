@@ -9094,11 +9094,6 @@ INSERT INTO access.endpointNamespace (namespace_id, endpoint_id)
     ON CONFLICT DO NOTHING;
 INSERT INTO access.endpointNamespace (namespace_id, endpoint_id)
     SELECT ns.id, ep.id FROM access.namespace ns, access.endpoint ep
-    WHERE ns.namespace = 'api.system.register_peripheral_server' AND ns.access_mode = 'W'
-    AND ep.endpoint = '/manager/api/system/registerPeripheralServer' AND ep.http_method = 'POST'
-    ON CONFLICT DO NOTHING;
-INSERT INTO access.endpointNamespace (namespace_id, endpoint_id)
-    SELECT ns.id, ep.id FROM access.namespace ns, access.endpoint ep
     WHERE ns.namespace = 'api.system.remove_entitlements' AND ns.access_mode = 'W'
     AND ep.endpoint = '/manager/api/system/removeEntitlements' AND ep.http_method = 'POST'
     ON CONFLICT DO NOTHING;
