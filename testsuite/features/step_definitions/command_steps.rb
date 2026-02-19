@@ -290,7 +290,7 @@ end
 When(/^I wait until "([^"]*)" container is active$/) do |service|
   node = get_target('server')
   cmd = "systemctl is-active #{service}"
-  node.run_local_until_ok(cmd)
+  node.run_until_ok(cmd, runs_in_container: false)
 end
 
 When(/^I wait until "([^"]*)" service is active on "([^"]*)"$/) do |service, host|
