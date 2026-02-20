@@ -6030,8 +6030,3 @@ INSERT INTO access.endpoint (class_method, endpoint, http_method, scope, auth_re
 INSERT INTO access.endpoint (class_method, endpoint, http_method, scope, auth_required)
     VALUES ('com.redhat.rhn.frontend.xmlrpc.proxy.ProxyHandler.backupConfiguration', '/manager/api/proxy/backupConfiguration', 'POST', 'A', True)
     ON CONFLICT (endpoint, http_method) DO NOTHING;
-
--- this endpoint has been removed, deleting it this way preserves the endpoint IDs
--- so the migration test does not fail
-DELETE FROM access.endpoint
-WHERE endpoint = '/manager/api/system/registerPeripheralServer';
