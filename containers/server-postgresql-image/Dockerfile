@@ -9,7 +9,8 @@ RUN zypper --non-interactive install --download-only --force --no-recommends pos
     mkdir -p /opt/contrib /opt/results && \
     find /var/cache/zypp/packages \( -name postgresql18-contrib* -o -name tar* \) -exec cp {} /opt/contrib \; && \
     cd /opt/contrib && rpm2cpio postgresql18-contrib.rpm | cpio -idmv && rpm2cpio tar*.rpm | cpio -idmv && \
-    find . \( -name pg_trgm* -o -name tar \) -exec cp --parents {} ../results/ \;
+    find . -name pg_trgm* -type f -exec cp --parents {} ../results/ \; && \
+    cp --parents /usr/bin/tar ../results/
 
 FROM $PG_BASE
 COPY --from=builder /opt/results/ /
