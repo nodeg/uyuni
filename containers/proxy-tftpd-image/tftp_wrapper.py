@@ -425,7 +425,7 @@ def get_arguments():
     parser.add_argument(
         "--caPath",
         type=str,
-        default="/etc/uyuni/ca.crt",
+        default="/etc/pki/trust/anchors/RHN-ORG-TRUSTED-SSL-CERT",
         help="Path to CA certificate",
     )
     parser.add_argument(
